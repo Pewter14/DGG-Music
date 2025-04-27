@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DGG Musics - Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #4B0F0F;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            background-color: #3B0F0F;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            width: 550px;
+            text-align: center;
+        }
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            margin: 0 auto 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        button {
+            background-color: #B00000;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #A00000;
+        }
+        .link {
+            color: #FFD700;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo"></div>
+        <h1>DGG Musics</h1>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" required>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="manter-logado">
+            <label for="manter-logado">Manter-me logado</label>
+        </div>
+        <button type="submit">Continuar</button>
+        <a href="#" class="link">Esqueceu a senha?</a>
+        <p>
+            <a href="#" class="link">Cadastro</a>
+        </p>
+    </div>
+
+</body>
+</html>
