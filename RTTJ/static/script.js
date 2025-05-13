@@ -13,28 +13,27 @@ btn.addEventListener('click', async () => {
   try {
     const res  = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
     const data = await res.json();
-    console.log('RESPOSTA da API:', data);
     if (data.error) throw new Error(data.error);
 
+    // data é um Array de posts
     const posts = Array.isArray(data) ? data : [];
-    if (posts.length === 0) {
+    if (!posts.length) {
       resultsContainer.innerHTML = '<li>Nenhum resultado encontrado.</li>';
       return;
     }
 
-    // Renderiza a lista
+    // renderiza lista
     resultsContainer.innerHTML = posts.map((p, i) => {
       const name = p.name || 'Sem título';
-      const eId  = p.eId || '';
-      return `<li data-eid="${eId}">${i + 1}. <strong>${name}</strong></li>`;
+      const eId  = p.eId || ''; 
+      return `<li data-eid="${eId}">${i+1}. <strong>${name}</strong></li>`;
     }).join('');
   } catch (err) {
     resultsContainer.innerHTML = `<li class="error">Erro: ${err.message}</li>`;
-    console.error('ERRO no Fetch/JS:', err);
+    console.error(err);
   }
 });
 
-// Injeta o iframe embed ao clicar
 resultsContainer.addEventListener('click', e => {
   const li  = e.target.closest('li[data-eid]');
   if (!li) return;
@@ -44,6 +43,7 @@ resultsContainer.addEventListener('click', e => {
     return;
   }
 
+  // monta o iframe embed do Whyd
   playerContainer.innerHTML = `
     <iframe
       width="100%"
@@ -55,8 +55,3 @@ resultsContainer.addEventListener('click', e => {
     </iframe>
   `;
 });
-
-
-//const data = await res.json();
-//console.log('RESPOSTA da API:', data);
-//if (data.error) throw new Error(data.error);
