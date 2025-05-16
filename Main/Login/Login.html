@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DGG Musics - Login</title>
-
-    <link rel="stylesheet" href="../Style.css">
-    
+  <meta charset="UTF-8">
+  <title>DGG Musics</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <div class="logo"></div>
-        <h1>DGG Musics</h1>
-        <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" required>
-        </div>
-        <div class="form-group">
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" required>
-        </div>
-        <div class="form-group">
-            <input type="checkbox" id="manter-logado">
-            <label for="manter-logado">Manter-me logado</label>
-        </div>
-        <button type="submit">Continuar</button>
-        <a href="#" class="link">Esqueceu a senha?</a>
-        <p>
-            <a href="#" class="link">Cadastro</a>
-        </p>
+  <div class="container">
+    <!-- Logo -->
+    <div class="header">
+      <div class="logo-circle"></div>
+      <span>DGG Musics</span>
     </div>
 
+    <!-- Abas -->
+    <div class="tabs">
+      <button id="tabLogin">Login</button>
+      <button id="tabCadastro">Cadastro</button>
+      <div class="slider" id="slider"></div>
+    </div>
+
+    <!-- Formulários -->
+    <div class="form-wrapper">
+      <div class="forms" id="formsContainer">
+        <!-- Login -->
+        <div class="form-content">
+          <input type="email" placeholder="E-mail">
+          <input type="password" placeholder="Senha">
+          <div class="checkbox-group">
+            <input type="checkbox" id="manter"> <label for="manter">Manter logado</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="admin"> <label for="admin">Logar como admin</label>
+          </div>
+          <button>Continuar</button>
+          <a href="#">Esqueceu a senha?</a>
+        </div>
+
+        <!-- Cadastro -->
+        <div class="form-content">
+          <input type="text" placeholder="Nome">
+          <input type="email" placeholder="E-mail">
+          <input type="password" placeholder="Senha">
+          <input type="tel" placeholder="Número telefônico">
+          <button>Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
