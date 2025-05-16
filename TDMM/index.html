@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini-Spotify (Front-End)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 640px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h1 { text-align: center; }
+    #search-container {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+    #query {
+      flex: 1;
+      padding: .5rem;
+      font-size: 1rem;
+    }
+    button {
+      padding: .5rem 1rem;
+      font-size: 1rem;
+      margin-left: .5rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: .75rem;
+      cursor: pointer;
+    }
+    li img {
+      width: 80px;
+      height: 45px;
+      object-fit: cover;
+      margin-right: .75rem;
+    }
+    li:hover {
+      background: #f0f0f0;
+    }
+    #player {
+      width: 100%;
+      height: 360px;
+      margin-top: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mini-Spotify Grátis</h1>
+
+  <div id="search-container">
+    <input type="text" id="query" placeholder="Buscar música (ex: Nirvana)" />
+    <button id="btn-search">Buscar</button>
+  </div>
+
+  <ul id="results"></ul>
+
+  <!-- aqui será embutido o player -->
+  <iframe id="player"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen>
+  </iframe>
+
+  <script>
+    // 👉 Insira sua chave aqui:
+    const API_KEY = 'AIzaSyBbXaxgTkhog1czT0ojlEDLa411YgRKN60';
+
+    const btn     = document.getElementById('btn-search');
+    const input   = document.getElementById('query');
+    const results = document.getElementById('results');
+    const player  = document.getElementById('player');
+
+    btn.addEventListener('click', async () => {
+      const q = input.value.trim();
+      if (!q) return alert('Digite algo para buscar');
+      results.innerHTML = '<li>Carregando…</li>';
+      player.style.display = 'none';
+
+      try {
+        // chama YouTube Data API v3
+        const res = await fetch(
+          `https://www.googleapis.com/youtube/v3/search?` +
+          new URLSearchParams({
+            part: 'snippet',
+            q,
+            type: 'video',
+            maxResults: '6',
+            key: API_KEY
+          })
+        );
+        const json = await res.json();
+        if (json.error) {
+          console.error(json.error);
+          throw new Error(json.error.message);
+        }
+
+        const items = json.items || [];
+        if (!items.length) {
+          results.innerHTML = '<li>Nenhum resultado.</li>';
+          return;
+        }
+
+        // renderiza lista de vídeos
+        results.innerHTML = items.map(item => {
+          const vid = item.id.videoId;
+          const title = item.snippet.title;
+          const thumb = item.snippet.thumbnails.default.url;
+          return `
+            <li data-video-id="${vid}">
+              <img src="${thumb}" alt="" />
+              <span>${title}</span>
+            </li>
+          `;
+        }).join('');
+      } catch (err) {
+        results.innerHTML = `<li style="color:red;">Erro: ${err.message}</li>`;
+        console.error(err);
+      }
+    });
+
+    // ao clicar num resultado, carrega o player
+    results.addEventListener('click', e => {
+      const li = e.target.closest('li[data-video-id]');
+      if (!li) return;
+      const vid = li.getAttribute('data-video-id');
+      player.src = `https://www.youtube.com/embed/${vid}?autoplay=1`;
+      player.style.display = 'block';
+      // rolagem suave até o player
+      player.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
