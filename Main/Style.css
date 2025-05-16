@@ -1,63 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #4B0F0F;
-    font-family: Arial, sans-serif;
-    color: white;
+  font-family: sans-serif;
+  background-color: #330000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
+
 .container {
-    background-color: #3B0F0F;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    width: 550px;
-    text-align: center;
+  background-color: #200000;
+  padding: 50px 40px;
+  border-radius: 20px;
+  width: 440px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
-.logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: white;
-    margin: 0 auto 20px;
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
 }
-h1 {
-    margin: 0;
-    font-size: 24px;
+
+.logo-circle {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
 }
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
+
+.header span {
+  font-weight: bold;
+  font-size: 1.1em;
 }
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 5px;
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  margin-bottom: 30px;
 }
-input[type="checkbox"] {
-    margin-right: 5px;
+
+.tabs button {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1.1em;
+  padding: 10px;
 }
-button {
-    background-color: #B00000;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
+
+.slider {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  width: 50%;
+  background-color: red;
+  transition: all 0.3s ease;
+  left: 0%;
 }
-button:hover {
-    background-color: #A00000;
+
+.form-wrapper {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
 }
-.link {
-    color: #FFD700;
-    text-decoration: none;
-    display: block;
-    margin-top: 10px; 
+
+.forms {
+  display: flex;
+  width: 200%;
+  transition: transform 0.5s ease;
+}
+
+.form-content {
+  width: 50%;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-content input {
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
+.form-content button {
+  padding: 12px;
+  background-color: red;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9em;
+}
+
+.form-content a {
+  color: white;
+  font-size: 0.9em;
+  text-align: center;
+  text-decoration: none;
 }
