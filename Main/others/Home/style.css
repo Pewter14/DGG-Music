@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(41, 0, 0);
+    color: rgb(212, 212, 212);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+.container {
+    display: flex;
+    height: 100vh;
+}
+.sidebar {
+  width: 220px;
+  background-color: #380101; /* cor mais destacada */
+  padding: 20px;
+  box-shadow: 3px 0 10px rgba(110, 1, 1, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+.sidebar h2 {
+  color: #960202;
+  font-size: 30 px;
+  margin-bottom: 30px;
+  margin-left: 12px;
+}
+
+.sidebar nav ul {
+  list-style: none;
+}
+
+.sidebar nav li {
+  font-size: 1.1rem;
+  margin: 10px ;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.sidebar nav li i {
+  margin-right: 10px;
+  color: #ff4d4d;
+}
+
+.sidebar nav li:hover {
+  color: #960202;
+}
