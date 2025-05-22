@@ -3,56 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>DGG Musics</title>
-  <link rel ="stylesheet" href="/Main/Style.css">
+  <link rel="stylesheet" href="Login.css">
 </head>
 <body>
 
   <div class="container">
-   
     <div class="header">
       <div class="logo-circle"></div>
       <span>DGG Musics</span>
     </div>
 
-    
     <div class="tabs">
       <button id="tabLogin">Login</button>
       <button id="tabCadastro">Cadastro</button>
       <div class="slider" id="slider"></div>
     </div>
 
-   
     <div class="form-wrapper">
       <div class="forms" id="formsContainer">
-        
-        <div class="form-content">
-          <input type="email" placeholder="E-mail">
-          <input type="password" placeholder="Senha">
+
+        <!-- → LOGIN ← -->
+        <form id="loginForm" class="form-content">
+          <input name="email"    type="email"    placeholder="E-mail" required>
+          <input name="password" type="password" placeholder="Senha" required>
           <div class="checkbox-group">
             <input type="checkbox" id="manter"> <label for="manter">Manter logado</label>
           </div>
           <div class="checkbox-group">
             <input type="checkbox" id="admin"> <label for="admin">Logar como admin</label>
           </div>
-          <button>Continuar</button>
+          <div class="msg"></div>
+          <button type="submit">Continuar</button>
           <a href="#">Esqueceu a senha?</a>
-        </div>
+        </form>
 
-       
-        <div class="form-content">
-          <input type="text" placeholder="Nome">
-          <input type="email" placeholder="E-mail">
-          <input type="password" placeholder="Senha">
-          <input type="tel" placeholder="Número telefônico">
-          <button>Cadastrar</button>
-        </div>
+        <!-- → CADASTRO ← -->
+        <form id="registerForm" class="form-content">
+          <input name="name"     type="text"  placeholder="Nome"     required>
+          <input name="email"    type="email" placeholder="E-mail"   required>
+          <input name="password" type="password" placeholder="Senha"  required>
+          <input name="tel"      type="tel"   placeholder="Telefone">
+          <div class="msg"></div>
+          <button type="submit">Cadastrar</button>
+        </form>
+
       </div>
     </div>
   </div>
 
-  <script src="./Login.js"></script>
-  <script type="module" src="/Main/scripts/modules/userModel.js"></script>
-  <script type="module" src="/Main/scripts/modules/auth.js"></script>
+  <!-- 
+    1) REMOVA todo <script src="Login.js"> ou import isolado de userModel.js  
+    2) Só ESTE módulo, que importa model ► controller ► view   
+  -->
+  <script type="module" src="/Main/scripts/modules/main.js"></script>
 </body>
 </html>
-
