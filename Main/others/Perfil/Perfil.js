@@ -1,5 +1,3 @@
-// script.js
-
 function editProfile() {
   document.querySelector('.edit-form').classList.remove('hidden');
 }
@@ -24,3 +22,4 @@ function saveChanges() {
 
   document.querySelector('.edit-form').classList.add('hidden');
 }
+

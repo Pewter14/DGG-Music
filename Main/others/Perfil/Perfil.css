@@ -1,99 +1,97 @@
-/* style.css */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #000;
+  color: #fff;
   display: flex;
 }
 
 .sidebar {
-  width: 200px;
+  width: 220px;
   background-color: #1a1a1a;
-  padding: 20px;
-  color: #a00;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding: 20px 15px;
+  height: 100vh;
 }
 
-.sidebar .logo {
-  font-weight: bold;
+.sidebar .logo img {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.sidebar .menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar .menu li {
+  color: #e60000;
   font-size: 18px;
-  color: #a00;
-  margin-bottom: 30px;
-}
-
-.sidebar nav a {
-  color: #f5f5f5;
-  text-decoration: none;
-  font-size: 14px;
+  margin-bottom: 20px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
-.profile-container {
-  flex: 1;
+.sidebar .menu li span {
+  margin-left: 8px;
+}
+
+.main-content {
+  flex-grow: 1;
   padding: 40px;
-  background-color: #000;
 }
 
-.profile-info {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.profile-section {
+  text-align: center;
   margin-bottom: 30px;
 }
 
-.profile-info img {
-  width: 100px;
-  height: 100px;
+.profile-section img {
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #a00;
+  border: 3px solid #e60000;
+  margin-bottom: 15px;
 }
 
-.profile-info .info-text h1 {
-  margin: 0;
-  font-size: 24px;
-}
-
-.profile-info button {
-  margin-top: 10px;
-  padding: 6px 12px;
-  background-color: #a00;
+.profile-section button {
+  background-color: #e60000;
+  color: #fff;
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
-  color: white;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 .edit-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
+  background-color: #111;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 0 auto 30px auto;
 }
 
-.edit-form.hidden {
-  display: none;
-}
-
-.edit-form input[type="text"],
-.edit-form input[type="file"] {
-  padding: 6px;
-  background-color: #1a1a1a;
-  border: 1px solid #333;
-  color: white;
+.edit-form input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
 }
 
 .edit-form button {
-  background-color: #a00;
-  color: white;
+  background-color: #e60000;
+  color: #fff;
+  padding: 10px;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.liked-songs h3 {
+  color: #e60000;
 }
 
 .liked-songs ul {
@@ -102,11 +100,11 @@ body {
 }
 
 .liked-songs li {
-  padding: 8px 0;
-  border-bottom: 1px solid #333;
-  color: #f5f5f5;
+  margin: 8px 0;
+  font-size: 16px;
 }
 
-h2 {
-  color: #a00;
+.hidden {
+  display: none;
 }
+
