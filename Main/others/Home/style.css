@@ -15,7 +15,7 @@ body {
     height: 100vh;
 }
 .sidebar {
-  width: 220px;
+  width: 250px;
   background-color: #252525; 
   padding: 20px;
   box-shadow: 3px 0 10px rgba(110, 1, 1, 0.4);
@@ -31,13 +31,16 @@ body {
 
 .sidebar nav ul {
   list-style: none;
+  
 }
 
 .sidebar nav li {
-  font-size: 1.1rem;
+  font-size: 19px;
   margin: 10px ;
   cursor: pointer;
   transition: color 0.3s;
+  margin-left: 50px;
+  
 }
 
 .sidebar nav li i {
@@ -88,4 +91,14 @@ body {
 .search-bar button i {
     color: #b8a5a5;
     font-size: 17px;
+}
+.populares h2 {
+  text-align: center;
+  color: white;
+  margin-left: 110px;
+  margin-top: 150px;
+}
+.sidebar nav li.minhaconta {
+  margin-top: 600px;
+  margin-left: -10px;
 }
