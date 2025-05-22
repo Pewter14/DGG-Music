@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil | DGG Musics</title>
+  <link rel="stylesheet" href="Perfil.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">DGG MUSICS</div>
+    <nav>
+      <a href="#">Minha Conta</a>
+      <a href="#">Início</a>
+      <a href="#">Playlist</a>
+    </nav>
+  </div>
+
+  <main class="profile-container">
+    <section class="profile-info">
+      <img id="profile-pic" src="default.jpg">
+      <div class="info-text">
+        <h1 id="profile-name">Nome do Usuário</h1>
+        <button onclick="editProfile()">Editar Perfil</button>
+      </div>
+    </section>
+
+    <section class="edit-form hidden">
+      <input type="text" id="name-input" placeholder="Novo nome">
+      <input type="file" id="photo-input" accept="image/*">
+      <button onclick="saveChanges()">Salvar</button>
+    </section>
+
+    <section class="liked-songs">
+      <h2>Músicas Curtidas</h2>
+      <ul id="liked-list">
+        <li>Música curtida 1</li>
+        <li>Música curtida 2</li>
+        <li>Música curtida 3</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="Perfil.js"></script>
+</body>
+</html>
