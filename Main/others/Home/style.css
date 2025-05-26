@@ -99,6 +99,25 @@ body {
   margin-top: 150px;
 }
 .sidebar nav li.minhaconta {
-  margin-top: 600px;
-  margin-left: -10px;
+  margin-top: 570px;
+  margin-left: 25px;
+  font-size: 19px;
+}
+
+.sidebar nav li.config {
+  font-size: 19px;
+  margin-left: 25px;
+  color: white; 
+  cursor: pointer;
+ 
+}
+
+.sidebar nav li.config i {
+  color: #960202;    
+  font-size: 19px;    
+  margin-left: 0px;
+  
+}
+.sidebar nav li.config:hover {
+  color: #960202;
 }
