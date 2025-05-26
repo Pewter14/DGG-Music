@@ -5,44 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil - DGG Musics</title>
   <link rel="stylesheet" href="Perfil.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="sidebar">
-    <div class="logo">
-      <img src="/Main/Imagens/logohr.png" alt="Logo DGG Musics">
-    </div>
-    <ul class="menu">
-      <li>👤 <span>Minha Conta</span></li>
-      <li>🏠 <span>Início</span></li>
-      <li>🎵 <span>Playlist</span></li>
-    </ul>
+
+  <div class="floating-search">
+    <form class="search-bar">
+      <input type="text" placeholder="Buscar músicas, artistas, álbuns..." />
+      <button type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
   </div>
 
-  <div class="main-content">
-    <div class="profile-section">
-      <img id="profile-pic" src="https://via.placeholder.com/150">
-      <h2 id="profile-name">Nome do Usuário</h2>
-      <button onclick="editProfile()">Editar Perfil</button>
-    </div>
+  <div class="container">
+    <aside class="sidebar">
+      <img src="/Main/Imagens/logohr.png" class="logo">
+      <nav>
+        <ul>
+          <li><i class="fa-solid fa-house"></i>🏠 Início</li>
+          <li><i class="fa-solid fa-music"></i>🎵 Playlist</li>
+          <li class="minhaconta"><i class="fa-solid fa-user"></i>🔴 Minha Conta</li>
+        </ul> 
+      </nav>
+    </aside>
 
-    <div class="edit-form hidden">
-      <h3>Editar Informações</h3>
-      <input type="text" id="name-input" placeholder="Novo nome">
-      <input type="email" id="email-input" placeholder="Novo E-mail">
-      <input type="text" id="cpf-input" placeholder="Novo CPF">
-      <input type="tel" id="phone-input" placeholder="Novo número de telefone">
-      <input type="password" id="password-input" placeholder="Nova senha">
-      <input type="file" id="photo-input"  placeholder="Trocar foto" accept="image/*">
-      <button onclick="saveChanges()">Salvar</button>
-    </div>
+    <div class="main-content">
+      <div class="profile-section">
+        <img id="profile-pic" src="https://via.placeholder.com/150">
+        <h2 id="profile-name">Nome do Usuário</h2>
+        <button onclick="editProfile()">Editar Perfil</button>
+      </div>
 
-    <div class="liked-songs">
-      <h3>Músicas Curtidas</h3>
-      <ul>
-        <li>Música Exemplo 1</li>
-        <li>Música Exemplo 2</li>
-        <li>Música Exemplo 3</li>
-      </ul>
+      <div class="edit-form hidden">
+        <h3>Editar Informações</h3>
+        <input type="text" id="name-input" placeholder="Novo nome">
+        <input type="email" id="email-input" placeholder="Novo E-mail">
+        <input type="text" id="cpf-input" placeholder="Novo CPF">
+        <input type="tel" id="phone-input" placeholder="Novo número de telefone">
+        <input type="password" id="password-input" placeholder="Nova senha">
+        <input type="file" id="photo-input"  placeholder="Trocar foto" accept="image/*">
+        <button onclick="saveChanges()">Salvar</button>
+      </div>
+
+      <div class="liked-songs">
+        <h3>Músicas Curtidas</h3>
+        <ul>
+          <li>Música Exemplo 1</li>
+          <li>Música Exemplo 2</li>
+          <li>Música Exemplo 3</li>
+        </ul>
+      </div>
     </div>
   </div>
 
