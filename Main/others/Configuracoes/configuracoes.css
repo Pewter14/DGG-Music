@@ -1,22 +1,27 @@
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Corpo da página */
 body {
   background-color: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+/* Layout principal */
 .container {
   display: flex;
   height: 100vh;
 }
 
+/* Sidebar lateral */
 .sidebar {
-  width: 220px;
+  width: 250px;
+  height: 100vh;
   background-color: #252525;
   padding: 20px;
   box-shadow: 3px 0 10px rgba(110, 1, 1, 0.4);
@@ -24,40 +29,80 @@ body {
   flex-direction: column;
 }
 
+/* Logo */
 .logo {
-  width: 250px;
+  width: 100%;
   height: auto;
-  margin-bottom: -20px;
-  margin-left: -30px;
+  margin-bottom: 1rem;
 }
 
+/* Navegação na sidebar */
 .sidebar nav ul {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  flex: 1;
 }
 
+/* Itens da navegação */
 .sidebar nav li {
-  font-size: 1.1rem;
-  margin: 10px;
-  cursor: pointer;
-  transition: color 0.3s;
+  font-size: 19px;
+  margin: 0.75rem 0 0.75rem 1.5rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
+/* Ícones do menu */
 .sidebar nav li i {
-  margin-right: 10px;
+  margin-right: 0.75rem;
   color: #960202;
-  font-size: 15px;
+  font-size: 19px;
 }
 
-.sidebar nav li:hover {
-  color: #960202;
+/* Links da sidebar */
+.sidebar nav li a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background 0.3s ease;
 }
 
+.sidebar nav li a:visited {
+  color: #fff;
+}
+
+.sidebar nav li a:hover {
+  background-color: #3f0b0b;
+}
+
+/* Link ativo */
+.sidebar nav li a.active {
+  font-weight: bold;
+  background-color: #960202;
+  color: #fff;
+}
+
+/* “Minha Conta” fixada na parte inferior */
+.sidebar nav li.minhaconta {
+  margin-top: auto;
+  margin-left: 1.5rem;
+}
+
+/* Barra de busca fixa no topo */
 .floating-search {
   position: fixed;
   top: 20px;
   left: 45%;
+  transform: translateX(-50%);
+  z-index: 100;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -92,28 +137,37 @@ body {
   font-size: 17px;
 }
 
-/* Conteúdo da página */
+/* Conteúdo principal da página */
 .main-content {
   flex: 1;
-  padding: 50px;
+  padding: 140px 50px 50px; /* margem superior para não cobrir a barra de busca */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* use center se quiser tudo centralizado */
 }
 
+/* Seções do conteúdo */
+section {
+  margin-bottom: 40px;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Título principal */
 h1 {
   font-size: 28px;
   color: #960202;
   margin-bottom: 40px;
 }
 
+/* Subtítulos */
 h2 {
   margin-bottom: 10px;
   color: #960202;
   font-size: 18px;
 }
 
-section {
-  margin-bottom: 40px;
-}
-
+/* Dropdown estilizado */
 select {
   padding: 8px;
   background-color: #252525;
@@ -122,7 +176,7 @@ select {
   border-radius: 5px;
 }
 
-/* Switch Toggle */
+/* Switch (Autoplay) */
 .switch {
   position: relative;
   display: inline-block;
@@ -139,8 +193,10 @@ select {
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0;
-  right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #555;
   transition: 0.4s;
   border-radius: 24px;
