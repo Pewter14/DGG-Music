@@ -6,16 +6,29 @@
     <title>DGG Music</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    
 </head>
 <body>
-
   <div class="floating-search">
-  <form class="search-bar">
-    <input type="text" placeholder="Buscar músicas, artistas, álbuns..." />
-    <button type="submit">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-  </form>
+    <form class="search-bar">
+      <input type="text" id="query" placeholder="Buscar músicas, artistas, álbuns..." />
+      <button type="submit" id="btn-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+
+    <!-- Resultados abaixo da barra -->
+    <ul id="results"></ul>
+
+    <!-- Player abaixo da lista -->
+    <iframe id="player"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+    </iframe>
+  </div>
+
+
 </div>
    
   <aside class="sidebar">
@@ -43,6 +56,10 @@
     </ul>
   </nav>
 </aside>
+
+  
+<script src="script.js"></script>
+
 
 
 <!-- 
