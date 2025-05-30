@@ -1,58 +1,41 @@
-const musicas = [{
-        nome: "Música 1",
-        src: "musicas/musica1.mp3"
-    },
-    {
-        nome: "Música 2",
-        src: "musicas/musica2.mp3"
-    },
-    {
-        nome: "Música 3",
-        src: "musicas/musica3.mp3"
-    }
+// Dados iniciais da playlist
+const musicas = [
+  {
+    titulo: "Céu Vermelho",
+    artista: "Lira Urbana",
+    duracao: "3:42"
+  },
+  {
+    titulo: "Noite Sem Fim",
+    artista: "Sombras do Sul",
+    duracao: "4:15"
+  },
+  {
+    titulo: "Reflexos",
+    artista: "EchoBeat",
+    duracao: "3:58"
+  }
 ];
 
-let indiceAtual = 0;
-const audio = document.getElementById("audio");
-const listaElement = document.getElementById("lista-musicas");
+// Função para renderizar as músicas
+function renderizarMusicas() {
+  const container = document.querySelector('.music-list');
+  container.innerHTML = '';
 
-musicas.forEach((musica, index) => {
-    const item = document.createElement("li");
-    item.textContent = musica.nome;
-    if (index === 0) item.style.fontWeight = "bold";
-    listaElement.appendChild(item);
-});
-
-function carregarMusica(indice) {
-    audio.src = musicas[indice].src;
-    atualizarLista(indice);
+  musicas.forEach((musica, index) => {
+    const item = document.createElement('div');
+    item.className = 'music-item';
+    item.innerHTML = `
+      <i class="fa-solid fa-music"></i>
+      <div class="music-info">
+        <h3>${musica.titulo}</h3>
+        <p>${musica.artista}</p>
+      </div>
+      <div class="music-duration">${musica.duracao}</div>
+    `;
+    container.appendChild(item);
+  });
 }
 
-function tocarOuPausar() {
-    if (audio.paused) {
-        audio.play();
-    } else {
-        audio.pause();
-    }
-}
-
-function proxima() {
-    indiceAtual = (indiceAtual + 1) % musicas.length;
-    carregarMusica(indiceAtual);
-    audio.play();
-}
-
-function anterior() {
-    indiceAtual = (indiceAtual - 1 + musicas.length) % musicas.length;
-    carregarMusica(indiceAtual);
-    audio.play();
-}
-
-function atualizarLista(indice) {
-    const itens = listaElement.querySelectorAll("li");
-    itens.forEach((item, i) => {
-        item.style.fontWeight = i === indice ? "bold" : "normal";
-    });
-}
-
-carregarMusica(indiceAtual);
+// Chamando a função quando a página carregar
+document.addEventListener('DOMContentLoaded', renderizarMusicas);
