@@ -1,30 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Playlist</title>
-    <link rel="stylesheet" href="playlist.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DGG Music - Playlist</title>
+    <link rel="stylesheet" href="playlist.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-
 <body>
-    <div class="player">
-        <h1>Minha Playlist</h1>
-        <audio id="audio" controls></audio>
+    <div class="container">
+        <aside class="sidebar">
+            <img src="/Main/Imagens/logo.png" class="logo" alt="Logo">
+            <nav>
+                <ul class="menu-top">
+                    <li><i class="fa-solid fa-house"></i> Início</li>
+                    <li><i class="fa-solid fa-music"></i> Playlists</li>
+                    <li class="config">
+                        <a href="/Main/others/Configuracoes/configuracoes.html">
+                            <i class="fa-solid fa-gear"></i> Configurações
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <nav>
+                <ul class="menu-bottom">
+                    <li class="minhaconta">
+                        <i class="fa-solid fa-user"></i> Minha Conta
+                    </li>
+                </ul>
+            </nav>
+        </aside>
 
-        <div class="controls">
-            <button onclick="anterior()">⏮ Anterior</button>
-            <button onclick="tocarOuPausar()">▶️/⏸</button>
-            <button onclick="proxima()">⏭ Próxima</button>
-        </div>
+        <main class="main">
+            <div class="floating-search">
+                <form class="search-bar">
+                    <input type="text" placeholder="Buscar músicas, artistas, álbuns..." />
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
 
-        <ul id="lista-musicas">
-            <!-- Lista gerada dinamicamente -->
-        </ul>
+            <div class="playlist-container">
+                <h2>Minhas Playlists</h2>
+                <div class="playlist-grid">
+                    <div class="playlist-item">🎵 Vibes de Fim de Tarde</div>
+                    <div class="playlist-item">🔥 Treino Pesado</div>
+                    <div class="playlist-item">💤 Relaxar</div>
+                    <div class="playlist-item">🎉 Festa Privada</div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script src="playlist.js"></script>
 </body>
-
 </html>
