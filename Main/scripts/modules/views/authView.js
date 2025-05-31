@@ -45,7 +45,7 @@ function initLoginForm() {
         msgEl.textContent = `Bem-vindo, ${user.name}!`;
         msgEl.className = 'msg success';
       }
-      setTimeout(() => location.href = 'index.html', 800);
+      setTimeout(() => location.href = '/main/others/home/home.html', 800);
     } catch (err) {
       if (msgEl) {
         msgEl.textContent = err.message;
