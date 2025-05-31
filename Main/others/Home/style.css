@@ -94,27 +94,32 @@ html, body {
 /* Container absoluto dentro de .container */
 .floating-search {
   position: fixed;
-  top: 20px;
-  left: 45%;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px; /* largura fixa */
+ 
 }
 
 .search-bar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: #4d0000;
   border-radius: 30px;
-  padding: 5px 15px;
+  padding: 8px 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  width: 100%;
 }
 
 .search-bar input[type="text"] {
+  flex: 1;
   border: none;
   background: transparent;
-  color: rgb(221, 221, 221);
+  color: #ddd;
   font-size: 1rem;
   outline: none;
-  width: 250px;
+  padding: 8px;
 }
 
 .search-bar button {
