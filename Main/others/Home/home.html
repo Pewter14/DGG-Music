@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DGG Music</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DGG Music</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
+  
+  <!-- Barra de busca flutuante -->
   <div class="floating-search">
     <form class="search-bar">
       <input type="text" id="query" placeholder="Buscar músicas, artistas, álbuns..." />
@@ -31,45 +32,43 @@
 
 </div>
    
-  <aside class="sidebar">
+  <div class="container">
+    <!-- Menu lateral -->
+    <aside class="sidebar">
   <img src="img/logo.png" class="logo" alt="Logo">
 
   <!-- menu principal -->
-  <nav>
-    <ul class="menu-top">
-      <li><i class="fa-solid fa-house"></i> Início</li>
-      <li><i class="fa-solid fa-music"></i> Playlists</li>
-      <li class="config">
-        <a href="/Main/others/Configuracoes/configuracoes.html">
-          <i class="fa-solid fa-gear"></i> Configurações
-        </a>
-      </li>
-    </ul>
-  </nav>
+<nav>
+  <ul class="menu-top">
+    <li>
+      <a href="/Main/others/Home/home.html">
+        <i class="fa-solid fa-house"></i> Início
+      </a>
+    </li>
+    <li>
+      <a href="/Main/others/Playlist/playlist.html">
+        <i class="fa-solid fa-music"></i> Playlists
+      </a>
+    </li>
+    <li class="config">
+      <a href="/Main/others/Configuracoes/configuracoes.html">
+        <i class="fa-solid fa-gear"></i> Configurações
+      </a>
+    </li>
+  </ul>
+</nav>
 
-  <!-- menu inferior (fixo embaixo) -->
-  <nav>
-    <ul class="menu-bottom">
-      <li class="minhaconta">
+<nav>
+  <ul class="menu-bottom">
+    <li class="minhaconta">
+      <a href="/Main/others/Perfil/Perfil.html">
         <i class="fa-solid fa-user"></i> Minha Conta
-      </li>
-    </ul>
-  </nav>
+      </a>
+    </li>
+  </ul>
+</nav>
+
 </aside>  
 
   
 <script src="script.js"></script>
-
-
-
-<!-- 
-   <main class="main">
-      <div class="populares">
-        <h2>Músicas em alta</h2>
-
-      </div>
-    </main>
-  </div>
-
-</body>
-</html> -->

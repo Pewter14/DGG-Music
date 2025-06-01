@@ -1,87 +1,100 @@
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background: #000;
-    color: #fff;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Corpo da página */
+body {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
+/* Layout principal */
 .container {
-    display: flex;
-    min-height: 100vh;
-    position: relative; 
+  display: flex;
+  height: 100vh;
 }
 
-
+/* Sidebar lateral */
 .sidebar {
-    width: 250px;
-    height: 100vh;              
-    background-color: #252525;
-    padding: 20px;
-    box-shadow: 3px 0 10px rgba(110, 1, 1, 0.4);
-    display: flex;
-    flex-direction: column;
+  width: 250px;
+  height: 100vh;
+  background-color: #252525;
+  padding: 20px;
+  box-shadow: 3px 0 10px rgba(110, 1, 1, 0.4);
+  display: flex;
+  flex-direction: column;
 }
 
-
+/* Logo */
 .logo {
-    width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
 }
 
-
+/* Navegação na sidebar */
 .sidebar nav ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-    flex: 1; 
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  flex: 1;
 }
 
-
+/* Itens da navegação */
 .sidebar nav li {
-    font-size: 19px;
-    margin: 0.75rem 0 0.75rem 1.5rem; 
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: color 0.3s;
-    color: #fff;
+  font-size: 19px;
+  margin: 0.75rem 0 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* Ícones */
+/* Ícones do menu */
 .sidebar nav li i {
-    margin-right: 0.75rem;
-    color: #960202;
-    font-size: 19px;
+  margin-right: 0.75rem;
+  color: #960202;
+  font-size: 19px;
 }
 
-
-.sidebar nav li:hover {
-    color: #ff4d4d;
+/* Links da sidebar */
+.sidebar nav li a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background 0.3s ease;
 }
 
-
-.sidebar nav li.config a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    align-items: center;
-    width: 100%;
+.sidebar nav li a:visited {
+  color: #fff;
 }
 
+.sidebar nav li a:hover {
+  background-color: #3f0b0b;
+}
 
+/* Link ativo */
+.sidebar nav li a.active {
+  font-weight: bold;
+  background-color: #960202;
+  color: #fff;
+}
+
+/* “Minha Conta” fixada na parte inferior */
 .sidebar nav li.minhaconta {
-    margin-top: auto;
-    margin-left: 1.5rem;
+  margin-top: auto;
+  margin-left: 1.5rem;
 }
-
 
 .floating-search {
   position: fixed;
@@ -132,10 +145,7 @@ html, body {
     margin-top: 150px;
     color: #fff;
 }
-.sidebar nav li.minhaconta {
-margin-top: 480px;
 
-}
 #results {
   background-color: #4d0000; 
   padding: 1rem;
