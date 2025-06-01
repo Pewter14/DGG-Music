@@ -70,18 +70,15 @@
         <input type="email" id="email-input" placeholder="Novo E-mail">
         <input type="text" id="cpf-input" placeholder="Novo CPF">
         <input type="tel" id="phone-input" placeholder="Novo número de telefone">
-        <input type="password" id="password-input" placeholder="Nova senha">
+        <div style="position: relative;">
+  <input type="password" id="password-input" placeholder="Nova senha" style="padding-right: 40px;">
+  <button type="button" id="toggle-password" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #e60000;">
+    <i class="fa-solid fa-eye"></i>
+  </button>
+</div>
+
         <input type="file" id="photo-input"  placeholder="Trocar foto" accept="image/*">
         <button onclick="saveChanges()">Salvar</button>
-      </div>
-
-      <div class="liked-songs">
-        <h3>Músicas Curtidas</h3>
-        <ul>
-          <li>Música Exemplo 1</li>
-          <li>Música Exemplo 2</li>
-          <li>Música Exemplo 3</li>
-        </ul>
       </div>
     </div>
   </div>
