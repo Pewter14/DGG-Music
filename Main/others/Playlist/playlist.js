@@ -1,4 +1,4 @@
-// Dados iniciais da playlist
+
 const musicas = [
   {
     titulo: "Céu Vermelho",
@@ -17,7 +17,7 @@ const musicas = [
   }
 ];
 
-// Função para renderizar as músicas
+
 function renderizarMusicas() {
   const container = document.querySelector('.music-list');
   container.innerHTML = '';

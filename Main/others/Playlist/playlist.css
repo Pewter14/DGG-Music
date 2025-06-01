@@ -1,4 +1,4 @@
-/* RESET & GLOBAL */
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
   display: flex;
 }
 
-/* SIDEBAR */
+
 .sidebar {
   width: 250px;
   background-color: #252525;
@@ -71,7 +71,7 @@ body {
   margin-left: 1.5rem;
 }
 
-/* PLAYLIST DESIGNER */
+
 .main-content {
   flex: 1;
   padding: 2rem;

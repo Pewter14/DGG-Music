@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Perfil - DGG Musics</title>
   <link rel="stylesheet" href="Perfil.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -13,7 +13,7 @@
     <form class="search-bar">
       <input type="text" placeholder="Buscar músicas, artistas, álbuns..." />
       <button type="submit">
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fas fa-magnifying-glass"></i>
       </button>
     </form>
   </div>
@@ -32,19 +32,19 @@
 
     <div class="main-content">
       <div class="profile-section">
-        <img id="profile-pic" src="https://via.placeholder.com/150">
+        <img id="profile-pic" src="https://via.placeholder.com/150" />
         <h2 id="profile-name">Nome do Usuário</h2>
         <button onclick="editProfile()">Editar Perfil</button>
       </div>
 
       <div class="edit-form hidden">
         <h3>Editar Informações</h3>
-        <input type="text" id="name-input" placeholder="Novo nome">
-        <input type="email" id="email-input" placeholder="Novo E-mail">
-        <input type="text" id="cpf-input" placeholder="Novo CPF">
-        <input type="tel" id="phone-input" placeholder="Novo número de telefone">
-        <input type="password" id="password-input" placeholder="Nova senha">
-        <input type="file" id="photo-input"  placeholder="Trocar foto" accept="image/*">
+        <input type="text" id="name-input" placeholder="Novo nome" />
+        <input type="email" id="email-input" placeholder="Novo E-mail" />
+        <input type="text" id="cpf-input" placeholder="Novo CPF" />
+        <input type="tel" id="phone-input" placeholder="Novo número de telefone" />
+        <input type="password" id="password-input" placeholder="Nova senha" />
+        <input type="file" id="photo-input" accept="image/*" />
         <button onclick="saveChanges()">Salvar</button>
       </div>
 

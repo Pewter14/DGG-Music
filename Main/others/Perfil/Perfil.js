@@ -10,14 +10,14 @@ function saveChanges() {
 
   if (nameInput.value) {
     profileName.textContent = nameInput.value;
-    localStorage.setItem('profileName', nameInput.value); // Salva nome no localStorage
+    localStorage.setItem('profileName', nameInput.value); 
   }
 
   if (photoInput.files && photoInput.files[0]) {
     const reader = new FileReader();
     reader.onload = function (e) {
       profilePic.src = e.target.result;
-      localStorage.setItem('profilePic', e.target.result); // Salva imagem no localStorage
+      localStorage.setItem('profilePic', e.target.result); 
     };
     reader.readAsDataURL(photoInput.files[0]);
   }
@@ -25,7 +25,7 @@ function saveChanges() {
   document.querySelector('.edit-form').classList.add('hidden');
 }
 
-// Carrega dados salvos ao abrir a página
+
 window.addEventListener('load', () => {
   const savedName = localStorage.getItem('profileName');
   const savedPic = localStorage.getItem('profilePic');
