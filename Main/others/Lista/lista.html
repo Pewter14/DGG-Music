@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>DGG Music - Lista</title>
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+ 
+    <main class="main-content">
+      <h1>Usuários Cadastrados</h1>
+
+      <input type="text" id="searchInput" placeholder="Buscar" class="search-user" />
+
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+        
+        </tbody>
+      </table>
+    </main>
+<div id="editModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h2>Editar Usuário</h2>
+    <form id="editForm">
+      <input type="hidden" id="editId" />
+      <label>Nome:</label>
+      <input type="text" id="editName" required />
+
+      <label>Email:</label>
+      <input type="email" id="editEmail" required />
+
+      <label>Telefone:</label>
+      <input type="text" id="editTel" />
+
+      <div style="margin-top: 10px;">
+        <button type="submit">Salvar</button>
+        <button type="button" onclick="fecharModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
