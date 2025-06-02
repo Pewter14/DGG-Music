@@ -70,10 +70,14 @@ body {
 
 /* Seções do conteúdo */
 section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* mantém alinhado à esquerda */
   margin-bottom: 40px;
   max-width: 500px;
   width: 100%;
 }
+
 
 /* Título principal */
 h1 {
@@ -142,4 +146,20 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(26px);
+}
+
+.btn-listagem {
+  margin-top: 20px;
+  background-color: #960202;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-listagem:hover {
+  background-color: #c20404;
 }
