@@ -104,3 +104,22 @@ button:hover {
   justify-content: space-between;
   margin-top: 10px;
 }
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background-color: #400000;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #600000;
+}
+
+.back-button i {
+  margin-right: 8px;
+}
