@@ -5,84 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Perfil | DGG Music</title>
   <link rel="stylesheet" href="Perfil.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="/Main/sidebar/sidebar.css"/>
 </head>
 <body>
 
-  <!-- Barra de busca flutuante -->
-  <div class="floating-search">
-    <form class="search-bar">
-      <input type="text" placeholder="Buscar músicas, artistas, álbuns..." />
-      <button type="submit">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </form>
-  </div>
-
   <div class="container">
-    <!-- Menu lateral -->
-    <aside class="sidebar">
-  <img src="/Main/Imagens/logo.png" class="logo" alt="Logo">
+    <!-- 4) Placeholder para a sidebar injetada -->
+    <div id="sidebar-placeholder"></div>
 
-  <!-- menu principal -->
-<nav>
-  <ul class="menu-top">
-    <li>
-      <a href="/Main/others/Home/home.html">
-        <i class="fa-solid fa-house"></i> Início
-      </a>
-    </li>
-    <li>
-      <a href="/Main/others/Playlist/playlist.html">
-        <i class="fa-solid fa-music"></i> Playlists
-      </a>
-    </li>
-    <li class="config">
-      <a href="/Main/others/Configuracoes/configuracoes.html">
-        <i class="fa-solid fa-gear"></i> Configurações
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<nav>
-  <ul class="menu-bottom">
-    <li class="minhaconta">
-      <a href="/Main/others/Perfil/Perfil.html">
-        <i class="fa-solid fa-user"></i> Minha Conta
-      </a>
-    </li>
-  </ul>
-</nav>
-
-</aside>
-
+    <!-- 5) Conteúdo principal (perfil) -->
     <div class="main-content">
       <div class="profile-section">
-        <img id="profile-pic" src="https://via.placeholder.com/150">
+        <img id="profile-pic" src="https://via.placeholder.com/150" alt="Foto de perfil">
         <h2 id="profile-name">Nome do Usuário</h2>
         <button onclick="editProfile()">Editar Perfil</button>
       </div>
 
       <div class="edit-form hidden">
         <h3>Editar Informações</h3>
-        <input type="text" id="name-input" placeholder="Novo nome">
-        <input type="email" id="email-input" placeholder="Novo E-mail">
-        <input type="text" id="cpf-input" placeholder="Novo CPF">
-        <input type="tel" id="phone-input" placeholder="Novo número de telefone">
-        <div style="position: relative;">
-  <input type="password" id="password-input" placeholder="Nova senha" style="padding-right: 40px;">
-  <button type="button" id="toggle-password" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #e60000;">
-    <i class="fa-solid fa-eye"></i>
-  </button>
-</div>
+        <input type="text" id="name-input" placeholder="Novo nome" />
+        <input type="email" id="email-input" placeholder="Novo E-mail" />
+        <input type="text" id="cpf-input" placeholder="Novo CPF" />
+        <input type="tel" id="phone-input" placeholder="Novo número de telefone" />
 
-        <input type="file" id="photo-input"  placeholder="Trocar foto" accept="image/*">
-        <button onclick="saveChanges()">Salvar</button>
+        <div style="position: relative; margin-top: 1rem;">
+          <input
+            type="password"
+            id="password-input"
+            placeholder="Nova senha"
+            style="padding-right: 40px;"
+          />
+          <button
+            type="button"
+            id="toggle-password"
+            style="
+              position: absolute;
+              top: 50%;
+              right: 10px;
+              transform: translateY(-50%);
+              background: none;
+              border: none;
+              cursor: pointer;
+              color: #e60000;
+            "
+          >
+            <i class="fa-solid fa-eye"></i>
+          </button>
+        </div>
+
+        <input
+          type="file"
+          id="photo-input"
+          placeholder="Trocar foto"
+          accept="image/*"
+          style="margin-top: 1rem;"
+        />
+        <button onclick="saveChanges()" style="margin-top: 1rem;">Salvar</button>
       </div>
     </div>
   </div>
 
+  <!-- Barra de busca flutuante -->
+  <div class="floating-search">
+    <form class="search-bar">
+      <input
+        type="text"
+        id="query"
+        placeholder="Buscar músicas, artistas, álbuns..."
+      />
+      <button type="submit" id="btn-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+    <ul id="results"></ul>
+    <iframe
+      id="player"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <!-- Script que injeta sidebar.html e depois sidebar.js -->
+  <script>
+    fetch("/Main/sidebar/sidebar.html")
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById("sidebar-placeholder").innerHTML = html;
+      })
+      .then(() => {
+        const script = document.createElement("script");
+        script.src = "/Main/sidebar/sidebar.js";
+        script.defer = true;
+        document.body.appendChild(script);
+      })
+      .catch(err => console.error("Erro ao carregar sidebar:", err));
+  </script>
+
+  <!-- Script específico desta página -->
   <script src="Perfil.js"></script>
 </body>
 </html>

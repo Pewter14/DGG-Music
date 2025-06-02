@@ -2,8 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>DGG Musics</title>
+  <title>DGG Musics – Login</title>
   <link rel="stylesheet" href="Login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
 
@@ -21,23 +23,24 @@
 
     <div class="form-wrapper">
       <div class="forms" id="formsContainer">
-
-      
+        <!-- ===== Formulário de Login ===== -->
         <form id="loginForm" class="form-content">
           <input name="email"    type="email"    placeholder="E-mail" required>
           <input name="password" type="password" placeholder="Senha" required>
           <div class="checkbox-group">
-            <input type="checkbox" id="manter"> <label for="manter">Manter logado</label>
+            <input type="checkbox" id="manter" />
+            <label for="manter">Manter logado</label>
           </div>
           <div class="checkbox-group">
-            <input type="checkbox" id="admin"> <label for="admin">Logar como admin</label>
+            <input type="checkbox" id="admin" />
+            <label for="admin">Logar como admin</label>
           </div>
           <div class="msg"></div>
           <button type="submit">Continuar</button>
           <a href="#">Esqueceu a senha?</a>
         </form>
 
-       
+        <!-- ===== Formulário de Cadastro ===== -->
         <form id="registerForm" class="form-content">
           <input name="name"     type="text"  placeholder="Nome"     required>
           <input name="email"    type="email" placeholder="E-mail"   required>
@@ -46,12 +49,10 @@
           <div class="msg"></div>
           <button type="submit">Cadastrar</button>
         </form>
-
       </div>
     </div>
   </div>
 
-
-  <script type="module" src="/Main/scripts/modules/main.js"></script>
+  <script src="login.js" defer></script>
 </body>
 </html>

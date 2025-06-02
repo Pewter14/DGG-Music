@@ -6,58 +6,47 @@
     <title>DGG Music</title>
     <link rel="stylesheet" href="Template.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="/Main/sidebar/sidebar.css"/>
 </head>
 <body>
+
+ <!-- Menu lateral -->
+    <div id="sidebar-placeholder"></div>
 
   <!-- Barra de busca flutuante -->
   <div class="floating-search">
     <form class="search-bar">
-      <input type="text" placeholder="Buscar músicas, artistas, álbuns..." />
-      <button type="submit">
+      <input
+        type="text"
+        id="query"
+        placeholder="Buscar músicas, artistas, álbuns..."
+      />
+      <button type="submit" id="btn-search">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </form>
+    <ul id="results"></ul>
+    <iframe
+      id="player"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
   </div>
 
-  <div class="container">
-    <!-- Menu lateral -->
-    <aside class="sidebar">
-  <img src="img/logo.png" class="logo" alt="Logo">
-
-  <!-- menu principal -->
-<nav>
-  <ul class="menu-top">
-    <li>
-      <a href="/Main/others/Home/home.html">
-        <i class="fa-solid fa-house"></i> Início
-      </a>
-    </li>
-    <li>
-      <a href="/Main/others/Playlist/playlist.html">
-        <i class="fa-solid fa-music"></i> Playlists
-      </a>
-    </li>
-    <li class="config">
-      <a href="/Main/others/Configuracoes/configuracoes.html">
-        <i class="fa-solid fa-gear"></i> Configurações
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<!-- menu inferior (fixo embaixo) -->
-<nav>
-  <ul class="menu-bottom">
-    <li class="minhaconta">
-      <a href="/Main/others/Perfil/Perfil.html">
-        <i class="fa-solid fa-user"></i> Minha Conta
-      </a>
-    </li>
-  </ul>
-</nav>
-
-   
- 
-
+  <script>
+    fetch('/Main/sidebar/sidebar.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('sidebar-placeholder').innerHTML = html;
+      })
+      .then(() => {
+        const script = document.createElement('script');
+        script.src = '/Main/sidebar/sidebar.js';
+        script.defer = true;
+        document.body.appendChild(script);
+      })
+      .catch(err => console.error('Erro ao carregar sidebar:', err));
+  </script>
 </body>
 </html>
