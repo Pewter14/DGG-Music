@@ -22,15 +22,14 @@ function renderTable(users) {
 
   users.forEach(user => {
     const tr = document.createElement('tr');
-
     tr.innerHTML = `
       <td>${user.nome}</td>
       <td>${user.email}</td>
       <td>${user.telefone || '-'}</td>
       <td>${user.cpf || '-'}</td>
       <td>
-        <button onclick="editarUsuario(${user.id})"><i class="fa fa-edit"></i></button>
-        <button onclick="excluirUsuario(${user.id})"><i class="fa fa-trash"></i></button>
+        <button data-id="${user.id}" class="btn-edit"><i class="fa fa-edit"></i></button>
+        <button data-id="${user.id}" class="btn-delete"><i class="fa fa-trash"></i></button>
       </td>
     `;
     tableBody.appendChild(tr);
@@ -53,16 +52,16 @@ function filtrarUsuarios() {
 
 searchInput.addEventListener('input', filtrarUsuarios);
 
-// Exclui usuário pelo id
-window.excluirUsuario = function(id) {
+// Exclui usuário pelo id clicado
+function excluirUsuario(id) {
   const todos = UsersModel._loadAll();
   const atualizados = todos.filter(u => u.id !== id);
   UsersModel._saveAll(atualizados);
   filtrarUsuarios();
-};
+}
 
 // Abre o modal de edição preenchendo com dados do usuário
-window.editarUsuario = function(id) {
+function editarUsuario(id) {
   const user = UsersModel._loadAll().find(u => u.id === id);
   if (!user) {
     alert('Usuário não encontrado.');
@@ -76,12 +75,12 @@ window.editarUsuario = function(id) {
   editCpf.value   = user.cpf || '';
 
   editModal.style.display = 'flex';
-};
+}
 
 // Fecha o modal de edição
-window.fecharModal = function() {
+function fecharModal() {
   editModal.style.display = 'none';
-};
+}
 
 // Processa submissão do formulário de edição
 editForm.addEventListener('submit', function(e) {
@@ -111,5 +110,18 @@ editForm.addEventListener('submit', function(e) {
   filtrarUsuarios();
 });
 
-// Inicialização: renderiza a lista completa
+// Delegação de eventos para editar/excluir
+tableBody.addEventListener('click', e => {
+  const button = e.target.closest('button');
+  if (!button) return;
+  const id = Number(button.dataset.id);
+  if (button.classList.contains('btn-edit')) {
+    editarUsuario(id);
+  }
+  if (button.classList.contains('btn-delete')) {
+    excluirUsuario(id);
+  }
+});
+
+// Inicialização: rendera a lista completa
 filtrarUsuarios();
