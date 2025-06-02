@@ -32,10 +32,10 @@ body {
 }
 
 .logo-circle {
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: -25px;
 }
 
 .header span {
