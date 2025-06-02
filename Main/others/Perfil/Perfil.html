@@ -9,22 +9,35 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
-  <link rel="stylesheet" href="/Main/sidebar/sidebar.css"/>
+  <link rel="stylesheet" href="/Main/sidebar/sidebar.css" />
 </head>
 <body>
-
   <div class="container">
-    <!-- 4) Placeholder para a sidebar injetada -->
+    
+    <!-- Placeholder para a sidebar -->
     <div id="sidebar-placeholder"></div>
 
-    <!-- 5) Conteúdo principal (perfil) -->
     <div class="main-content">
       <div class="profile-section">
-        <img id="profile-pic" src="https://via.placeholder.com/150" alt="Foto de perfil">
+        <img
+          id="profile-pic"
+          src="https://via.placeholder.com/150"
+          alt="Foto de perfil"
+        />
         <h2 id="profile-name">Nome do Usuário</h2>
-        <button onclick="editProfile()">Editar Perfil</button>
+        <button id="btn-editar">Editar Perfil</button>
       </div>
 
+      <!-- Visualização das informações atuais -->
+      <div class="view-info" id="view-info">
+        <h3>Informações do Usuário</h3>
+        <p><strong>Nome:</strong> <span id="nome-usuario">—</span></p>
+        <p><strong>E-mail:</strong> <span id="email-usuario">—</span></p>
+        <p><strong>CPF:</strong> <span id="cpf-usuario">—</span></p>
+        <p><strong>Telefone:</strong> <span id="telefone-usuario">—</span></p>
+      </div>
+
+      <!-- Formulário de edição (inicia oculto) -->
       <div class="edit-form hidden">
         <h3>Editar Informações</h3>
         <input type="text" id="name-input" placeholder="Novo nome" />
@@ -69,7 +82,7 @@
     </div>
   </div>
 
-  <!-- Barra de busca flutuante -->
+  <!-- Barra de busca flutuante, se for parte do Perfil -->
   <div class="floating-search">
     <form class="search-bar">
       <input
@@ -90,11 +103,11 @@
     ></iframe>
   </div>
 
-  <!-- Script que injeta sidebar.html e depois sidebar.js -->
+  <!-- Injeção da sidebar -->
   <script>
     fetch("/Main/sidebar/sidebar.html")
-      .then(response => response.text())
-      .then(html => {
+      .then((response) => response.text())
+      .then((html) => {
         document.getElementById("sidebar-placeholder").innerHTML = html;
       })
       .then(() => {
@@ -103,10 +116,10 @@
         script.defer = true;
         document.body.appendChild(script);
       })
-      .catch(err => console.error("Erro ao carregar sidebar:", err));
+      .catch((err) => console.error("Erro ao carregar sidebar:", err));
   </script>
 
-  <!-- Script específico desta página -->
+  <!-- Script de perfil -->
   <script src="Perfil.js"></script>
 </body>
 </html>

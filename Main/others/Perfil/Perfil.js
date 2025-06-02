@@ -1,118 +1,167 @@
-// Perfil.js
-
-// Função que exibe/oculta o formulário de edição
-function editProfile() {
-  const editForm = document.querySelector(".edit-form");
-  editForm.classList.toggle("hidden");
-}
-
-// Função que salva as alterações feitas no perfil
-function saveChanges() {
-  const nameInput = document.getElementById("name-input");
-  const emailInput = document.getElementById("email-input");
-  const cpfInput = document.getElementById("cpf-input");
-  const phoneInput = document.getElementById("phone-input");
-  const passwordInput = document.getElementById("password-input");
-  const photoInput = document.getElementById("photo-input");
-
-  const profileNameElem = document.getElementById("profile-name");
-  const profilePicElem = document.getElementById("profile-pic");
-
-  // 1) Atualiza o nome, gravando em localStorage.profileName e localStorage.username
-  if (nameInput.value.trim()) {
-    const novoNome = nameInput.value.trim();
-    profileNameElem.textContent = novoNome;
-    localStorage.setItem("profileName", novoNome);
-    localStorage.setItem("username", novoNome);
-
-    // Atualiza imediatamente o texto na sidebar (se já estiver visível)
-    const userInfo = document.querySelector(".user-info");
-    if (userInfo) {
-      userInfo.innerHTML = `<i class="fas fa-user-circle"></i> ${novoNome}`;
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  // Pega sessão
+  let session = JSON.parse(localStorage.getItem('dgg_session') || sessionStorage.getItem('dgg_session'));
+  if (!session) {
+    alert('Usuário não logado.');
+    window.location.href = '/Main/others/Login/Login.html';
+    return;
   }
 
-  // 2) Atualiza a foto, gravando no localStorage.profilePic como Data URL
-  if (photoInput.files && photoInput.files[0]) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      profilePicElem.src = e.target.result;
-      localStorage.setItem("profilePic", e.target.result);
-    };
-    reader.readAsDataURL(photoInput.files[0]);
+  const { id, isAdmin, email } = session;
+
+  // Pega elementos DOM
+  const nomeSpan = document.getElementById('nome-usuario');
+  const emailSpan = document.getElementById('email-usuario');
+  const cpfSpan = document.getElementById('cpf-usuario');
+  const telSpan = document.getElementById('telefone-usuario');
+
+  const profileName = document.getElementById('profile-name');
+  const profilePic = document.getElementById('profile-pic'); // Presumo que exista um <img id="profile-pic">
+
+  const viewInfo = document.getElementById('view-info');
+  const editForm = document.querySelector('.edit-form');
+
+  const nameInput = document.getElementById('name-input');
+  const emailInput = document.getElementById('email-input');
+  const cpfInput = document.getElementById('cpf-input');
+  const phoneInput = document.getElementById('phone-input');
+  const passwordInput = document.getElementById('password-input');
+  const photoInput = document.getElementById('photo-input');
+
+  const btnEditar = document.getElementById('btn-editar');
+  const togglePasswordBtn = document.getElementById('toggle-password');
+
+  // Pega usuários do localStorage
+  const users = JSON.parse(localStorage.getItem('dgg_users') || '[]');
+  let user = users[id];
+
+  if (!user) {
+    alert('Usuário não encontrado.');
+    return;
   }
 
-  // 3) Grava os outros campos (mas não afetam a sidebar)
-  if (emailInput.value.trim()) {
-    localStorage.setItem("profileEmail", emailInput.value.trim());
-  }
-  if (cpfInput.value.trim()) {
-    localStorage.setItem("profileCPF", cpfInput.value.trim());
-  }
-  if (phoneInput.value.trim()) {
-    localStorage.setItem("profilePhone", phoneInput.value.trim());
-  }
-  if (passwordInput.value.trim()) {
-    localStorage.setItem("profilePassword", passwordInput.value.trim());
-  }
-
-  // 4) Esconde o formulário de edição após salvar
-  document.querySelector(".edit-form").classList.add("hidden");
-}
-
-// Ao carregar a página, preenchendo campos a partir do localStorage
-window.addEventListener("load", () => {
-  const savedName = localStorage.getItem("profileName");
-  const savedPic = localStorage.getItem("profilePic");
-  const savedEmail = localStorage.getItem("profileEmail");
-  const savedCPF = localStorage.getItem("profileCPF");
-  const savedPhone = localStorage.getItem("profilePhone");
-  const savedPassword = localStorage.getItem("profilePassword");
-
-  // 1) Preenche o nome no perfil e no campo de edição
-  if (savedName) {
-    document.getElementById("profile-name").textContent = savedName;
-    document.getElementById("name-input").value = savedName;
-
-    // Também atualiza a sidebar, caso já esteja visível
-    const userInfo = document.querySelector(".user-info");
-    if (userInfo) {
-      userInfo.innerHTML = `<i class="fas fa-user-circle"></i> ${savedName}`;
-    }
-  }
-
-  // 2) Preenche a foto de perfil
-  if (savedPic) {
-    document.getElementById("profile-pic").src = savedPic;
-  }
-
-  // 3) Preenche os campos de email, CPF, telefone e senha no formulário
-  if (savedEmail) {
-    document.getElementById("email-input").value = savedEmail;
-  }
-  if (savedCPF) {
-    document.getElementById("cpf-input").value = savedCPF;
-  }
-  if (savedPhone) {
-    document.getElementById("phone-input").value = savedPhone;
-  }
-  if (savedPassword) {
-    document.getElementById("password-input").value = savedPassword;
-  }
-
-  // 4) Controle de exibição/ocultação da senha
-  const togglePasswordBtn = document.getElementById("toggle-password");
-  togglePasswordBtn.addEventListener("click", function () {
-    const pwInput = document.getElementById("password-input");
-    const icon = this.querySelector("i");
-    if (pwInput.type === "password") {
-      pwInput.type = "text";
-      icon.classList.remove("fa-eye");
-      icon.classList.add("fa-eye-slash");
+  // Função para mostrar dados na view-info e no topo do perfil
+  function preencherDados() {
+    if (isAdmin) {
+      nomeSpan.textContent = 'Administrador';
+      emailSpan.textContent = email;
+      cpfSpan.textContent = '—';
+      telSpan.textContent = '—';
+      profileName.textContent = 'Administrador';
+      profilePic.src = 'https://via.placeholder.com/150'; // foto padrão
     } else {
-      pwInput.type = "password";
-      icon.classList.remove("fa-eye-slash");
-      icon.classList.add("fa-eye");
+      nomeSpan.textContent = user.nome;
+      emailSpan.textContent = user.email;
+      cpfSpan.textContent = user.cpf || '—';
+      telSpan.textContent = user.telefone || '—';
+      profileName.textContent = user.nome;
+      profilePic.src = user.foto || 'https://via.placeholder.com/150'; // se não tiver foto, mostra placeholder
+    }
+  }
+
+  // Mostra a view e esconde o formulário
+  function showViewInfo() {
+    viewInfo.classList.remove('hidden');
+    editForm.classList.add('hidden');
+  }
+
+  // Mostra o formulário e esconde a view
+  function showEditForm() {
+    // Preenche inputs com os dados atuais
+    nameInput.value = user.nome || '';
+    emailInput.value = user.email || '';
+    cpfInput.value = user.cpf || '';
+    phoneInput.value = user.telefone || '';
+    passwordInput.value = '';
+    photoInput.value = '';
+
+    viewInfo.classList.add('hidden');
+    editForm.classList.remove('hidden');
+  }
+
+  // Converter arquivo para base64
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Atualiza a foto no preview ao selecionar arquivo
+  photoInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      const base64 = await fileToBase64(file);
+      profilePic.src = base64; // mostra preview no perfil
+      user.foto = base64; // atualiza no objeto user para salvar depois
+    } catch (err) {
+      console.error('Erro ao carregar a imagem:', err);
     }
   });
+
+  // Atualiza o usuário no localStorage e sessionStorage
+  function salvarUsuarios() {
+    // Atualiza dados do usuário
+    user.nome = nameInput.value.trim() || user.nome;
+    user.email = emailInput.value.trim() || user.email;
+    user.cpf = cpfInput.value.trim();
+    user.telefone = phoneInput.value.trim();
+
+    // Atualiza a senha se preenchida
+    if (passwordInput.value.trim() !== '') {
+      user.senha = passwordInput.value.trim();
+    }
+
+    // A foto já foi atualizada no evento change do input
+
+    // Atualiza o array de usuários e salva no localStorage
+    users[id] = user;
+    localStorage.setItem('dgg_users', JSON.stringify(users));
+
+    // Atualiza o session (usuário logado) com os dados mais recentes do user
+    if (session) {
+      session.nome = user.nome;
+      session.email = user.email;
+      session.cpf = user.cpf || session.cpf;
+      session.telefone = user.telefone || session.telefone;
+
+      // Salva a sessão atualizada tanto no localStorage quanto no sessionStorage
+      localStorage.setItem('dgg_session', JSON.stringify(session));
+      sessionStorage.setItem('dgg_session', JSON.stringify(session));
+
+      // Atualiza também a chave 'username' usada no sidebar para exibir nome
+      localStorage.setItem('username', user.nome);
+      sessionStorage.setItem('username', user.nome);
+    }
+
+    preencherDados();
+    showViewInfo();
+  }
+
+  // Botão editar perfil
+  btnEditar.addEventListener('click', () => {
+    showEditForm();
+  });
+
+  // Botão salvar - chamado no onclick do botão html
+  window.saveChanges = salvarUsuarios;
+
+  // Toggle mostrar/ocultar senha
+  togglePasswordBtn.addEventListener('click', () => {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      togglePasswordBtn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+    } else {
+      passwordInput.type = 'password';
+      togglePasswordBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    }
+  });
+
+  // Inicializa dados na tela
+  preencherDados();
+  showViewInfo();
 });

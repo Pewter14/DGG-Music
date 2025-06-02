@@ -23,36 +23,40 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     // Pega os valores do form de cadastro
-    const nome = registerForm.name.value.trim();
-    const email = registerForm.email.value.trim();
-    const senha = registerForm.password.value.trim();
-    const telefone = registerForm.tel.value.trim();
+const nome = registerForm.name.value.trim();
+const email = registerForm.email.value.trim();
+const senha = registerForm.password.value.trim();
+const telefone = registerForm.tel.value.trim();
+const cpf = registerForm.cpf.value.trim();
+const date = registerForm.date.value.trim();
 
-    // Limpa mensagem anterior
-    registerMsgContainer.textContent = '';
+// Limpa mensagem anterior
+registerMsgContainer.textContent = '';
 
-    // Validações básicas (exemplo mínimo)
-    if (nome.length < 3) {
-      registerMsgContainer.textContent = 'Nome muito curto.';
-      registerMsgContainer.style.color = 'crimson';
-      return;
-    }
-    if (!email.includes('@') || senha.length < 4) {
-      registerMsgContainer.textContent = 'E-mail ou senha inválidos.';
-      registerMsgContainer.style.color = 'crimson';
-      return;
-    }
+// Validações básicas (exemplo mínimo)
+if (nome.length < 3) {
+  registerMsgContainer.textContent = 'Nome muito curto.';
+  registerMsgContainer.style.color = 'crimson';
+  return;
+}
+if (!email.includes('@') || senha.length < 4) {
+  registerMsgContainer.textContent = 'E-mail ou senha inválidos.';
+  registerMsgContainer.style.color = 'crimson';
+  return;
+}
 
-    // Monta um objeto para representar esse usuário
-    const novoUsuario = {
-      nome,
-      email,
-      senha,
-      telefone: telefone || ''
-    };
+// Monta um objeto para representar esse usuário
+const novoUsuario = {
+  nome,
+  email,
+  senha,
+  telefone: telefone || '',
+  cpf: cpf || '',
+  date: date || ''
+};
 
     // Aqui vamos criar um array “users” no localStorage e empurrar esse novo usuário.
-    const usuariosSalvos = JSON.parse(localStorage.getItem('users') || '[]');
+    const usuariosSalvos = JSON.parse(localStorage.getItem('dgg_users') || '[]');
     // Verifica se já existe esse e-mail cadastrado
     const jaExiste = usuariosSalvos.some(u => u.email === email);
     if (jaExiste) {
@@ -63,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Adiciona ao array e salva
     usuariosSalvos.push(novoUsuario);
-    localStorage.setItem('users', JSON.stringify(usuariosSalvos));
+    localStorage.setItem('dgg_users', JSON.stringify(usuariosSalvos));
 
     // Informa sucesso
     registerMsgContainer.textContent = 'Cadastro realizado com sucesso! Agora faça login.';
@@ -96,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loginMsgContainer.textContent = '';
 
     // Pega lista de usuários cadastrados no localStorage
-    const usuariosSalvos = JSON.parse(localStorage.getItem('users') || '[]');
+    const usuariosSalvos = JSON.parse(localStorage.getItem('dgg_users') || '[]');
 
     // Verifica se é admin (simulação de admin hardcoded)
     let usuarioEncontrado = null;
@@ -129,11 +133,36 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Se passou, salva no Storage (local ou session) conforme “Manter logado”
     const storage = manterLogado ? localStorage : sessionStorage;
-    storage.setItem('username', usuarioEncontrado.nome);
-    storage.setItem('userEmail', usuarioEncontrado.email);
-    storage.setItem('isAdmin', usuarioEncontrado.isAdmin ? 'true' : 'false');
+
+// Se for admin, não tem ID. Usa -1 como marcador.
+if (usuarioEncontrado.isAdmin) {
+  storage.setItem('dgg_session', JSON.stringify({
+    id: -1,
+    isAdmin: true,
+    email: usuarioEncontrado.email
+  }));
+
+  // 👇 Também salva os dados do admin
+  storage.setItem('username', usuarioEncontrado.nome);
+  storage.setItem('userEmail', usuarioEncontrado.email);
+  storage.setItem('isAdmin', true);
+}
+
+ else {
+  // Buscar ID do usuário no dgg_users
+  const usuarioOriginal = usuariosSalvos.find(u => u.email === email && u.senha === senha);
+  storage.setItem('dgg_session', JSON.stringify({
+  id: usuariosSalvos.indexOf(usuarioOriginal),
+  isAdmin: false,
+  email: usuarioOriginal.email
+}));
+
+// 👇 Adicionado: salva nome e dados para o sidebar.js funcionar
+storage.setItem('username', usuarioOriginal.nome);
+storage.setItem('userEmail', usuarioOriginal.email);
+storage.setItem('isAdmin', false);
+}
 
     // Redireciona para a página que contém a sidebar
     window.location.href = '/Main/others/Home/home.html';

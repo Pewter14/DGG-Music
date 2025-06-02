@@ -1,18 +1,14 @@
-// Main/sidebar/sidebar.js
 (() => {
   const bottomLogin = document.querySelector('.bottom-login');
-  if (!bottomLogin) return; // aborta se não encontrar
+  if (!bottomLogin) return;
 
-  const nomeUsuario =
-    localStorage.getItem('username') || sessionStorage.getItem('username');
-  const isLogado = !!nomeUsuario;
-
-  if (isLogado) {
+  // Função para renderizar o bloco do usuário logado
+  function renderUser(nomeUsuario) {
     bottomLogin.innerHTML = `
-      <div class="user-info">
-        <i class="fas fa-user-circle"></i> ${nomeUsuario}
+      <div class="user-logged">
+        <span><i class="fas fa-user-circle"></i> ${nomeUsuario}</span>
+        <button class="logout-btn">Sair</button>
       </div>
-      <div class="logout-btn">Sair</div>
     `;
 
     const logoutBtn = bottomLogin.querySelector('.logout-btn');
@@ -27,4 +23,24 @@
       window.location.href = '/Main/others/Login/Login.html';
     });
   }
+
+  // Pega nome do usuário armazenado (tenta localStorage e sessionStorage)
+  let nomeUsuario = localStorage.getItem('username') || sessionStorage.getItem('username');
+
+  if (nomeUsuario) {
+    renderUser(nomeUsuario);
+  }
+
+  // Escuta mudanças no localStorage para atualizar o nome do usuário em tempo real
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'username') {
+      const novoNome = event.newValue;
+      if (novoNome) {
+        renderUser(novoNome);
+      } else {
+        // Caso username seja removido (logout em outra aba, por exemplo)
+        bottomLogin.innerHTML = '';
+      }
+    }
+  });
 })();

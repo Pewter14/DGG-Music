@@ -45,7 +45,9 @@
           <input name="name"     type="text"  placeholder="Nome"     required>
           <input name="email"    type="email" placeholder="E-mail"   required>
           <input name="password" type="password" placeholder="Senha"  required>
-          <input name="tel"      type="tel"   placeholder="Telefone">
+          <input name="cpf" type="text" inputmode="numeric" pattern="\d{11}" maxlength="14" placeholder="CPF">
+          <input name="tel" type="tel" inputmode="tel" maxlength="15" placeholder="Telefone">
+          <input name="date"     type="date"  placeholder="Data de Nascimento">
           <div class="msg"></div>
           <button type="submit">Cadastrar</button>
         </form>
