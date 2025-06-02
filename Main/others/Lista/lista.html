@@ -2,16 +2,16 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>DGG Music - Lista</title>
-  <link rel="stylesheet" href="../../style.css" />
-  <link rel="stylesheet" href="style.css" />
+  <title>DGG MUSICS - Lista de Usuários</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <main class="main-content">
+<body class="dark-theme">
+
+  <main class="main-content no-sidebar">
     <h1>Usuários Cadastrados</h1>
 
-    <input type="text" id="searchInput" placeholder="Buscar" class="search-user" />
+    <input type="text" id="searchInput" placeholder="Buscar usuários..." class="search-user" />
 
     <table class="user-table">
       <thead>
@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody id="userTableBody">
-        <!-- Linhas serão inseridas dinamicamente -->
+        <!-- Linhas inseridas dinamicamente -->
       </tbody>
     </table>
   </main>
@@ -34,7 +34,7 @@
       <h2>Editar Usuário</h2>
       <form id="editForm">
         <input type="hidden" id="editId" />
-        
+
         <label>Nome:</label>
         <input type="text" id="editName" required />
 
@@ -47,7 +47,7 @@
         <label>CPF:</label>
         <input type="text" id="editCpf" />
 
-        <div style="margin-top: 10px;">
+        <div class="modal-buttons">
           <button type="submit">Salvar</button>
           <button type="button" onclick="fecharModal()">Cancelar</button>
         </div>
