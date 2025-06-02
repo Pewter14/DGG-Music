@@ -9,13 +9,14 @@ const editId      = document.getElementById('editId');
 const editName    = document.getElementById('editName');
 const editEmail   = document.getElementById('editEmail');
 const editTel     = document.getElementById('editTel');
+const editCpf     = document.getElementById('editCpf');
 
 // Renderiza a tabela com a lista de usuários
 function renderTable(users) {
   tableBody.innerHTML = '';
 
   if (users.length === 0) {
-    tableBody.innerHTML = `<tr><td colspan="4">Nenhum usuário encontrado.</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="5">Nenhum usuário encontrado.</td></tr>`;
     return;
   }
 
@@ -26,6 +27,7 @@ function renderTable(users) {
       <td>${user.nome}</td>
       <td>${user.email}</td>
       <td>${user.telefone || '-'}</td>
+      <td>${user.cpf || '-'}</td>
       <td>
         <button onclick="editarUsuario(${user.id})"><i class="fa fa-edit"></i></button>
         <button onclick="excluirUsuario(${user.id})"><i class="fa fa-trash"></i></button>
@@ -42,7 +44,8 @@ function filtrarUsuarios() {
 
   const filtrados = todos.filter(u =>
     u.nome.toLowerCase().includes(termo) ||
-    u.email.toLowerCase().includes(termo)
+    u.email.toLowerCase().includes(termo) ||
+    (u.cpf && u.cpf.includes(termo))
   );
 
   renderTable(filtrados);
@@ -70,6 +73,7 @@ window.editarUsuario = function(id) {
   editName.value  = user.nome;
   editEmail.value = user.email;
   editTel.value   = user.telefone || '';
+  editCpf.value   = user.cpf || '';
 
   editModal.style.display = 'flex';
 };
@@ -87,6 +91,7 @@ editForm.addEventListener('submit', function(e) {
   const nome  = editName.value.trim();
   const email = editEmail.value.trim();
   const tel   = editTel.value.trim();
+  const cpf   = editCpf.value.trim();
 
   const users = UsersModel._loadAll();
   const index = users.findIndex(u => u.id === id);
@@ -99,6 +104,7 @@ editForm.addEventListener('submit', function(e) {
   users[index].nome     = nome;
   users[index].email    = email;
   users[index].telefone = tel;
+  users[index].cpf      = cpf;
 
   UsersModel._saveAll(users);
   fecharModal();

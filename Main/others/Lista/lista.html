@@ -19,6 +19,7 @@
           <th>Nome</th>
           <th>Email</th>
           <th>Telefone</th>
+          <th>CPF</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -33,6 +34,7 @@
       <h2>Editar Usuário</h2>
       <form id="editForm">
         <input type="hidden" id="editId" />
+        
         <label>Nome:</label>
         <input type="text" id="editName" required />
 
@@ -41,6 +43,9 @@
 
         <label>Telefone:</label>
         <input type="text" id="editTel" />
+
+        <label>CPF:</label>
+        <input type="text" id="editCpf" />
 
         <div style="margin-top: 10px;">
           <button type="submit">Salvar</button>
