@@ -91,24 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
-
-    // Coleta dados do login
-    const email = loginForm.email.value.trim();
-    const senha = loginForm.password.value.trim();
+    const email       = loginForm.email.value.trim();
+    const senha       = loginForm.password.value.trim();
     const manterLogado = document.getElementById('manter').checked;
-    const isAdmin = document.getElementById('admin').checked;
-
-    // Limpa mensagem anterior
+    const isAdminChk   = document.getElementById('admin').checked;
     loginMsgContainer.textContent = '';
 
-    // Pega lista de usuários cadastrados no localStorage
     const usuariosSalvos = JSON.parse(localStorage.getItem('dgg_users') || '[]');
 
-    // Verifica se é admin (simulação de admin hardcoded)
     let usuarioEncontrado = null;
-    if (isAdmin) {
-      // Exemplo fixo de admin
-      if (email === 'admin@exemplo.com' && senha === 'admin123') {
+    if (isAdminChk) {
+      if (email === 'admin@email.com' && senha === 'admin123') {
         usuarioEncontrado = {
           id: -1,
           nome: 'Administrador',
@@ -118,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Se não for admin, busca usuário normal no array
+    //plebeus
     if (!usuarioEncontrado) {
       const original = usuariosSalvos.find(u => u.email === email && u.senha === senha);
       if (original) {
@@ -136,10 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
       loginMsgContainer.style.color = 'crimson';
       return;
     }
+    const storage = manterLogado ? localStorage : sessionStorage; //??????????????????????
 
-    const storage = manterLogado ? localStorage : sessionStorage;
-
-    // Salva sessão
     storage.setItem('dgg_session', JSON.stringify({
       id: usuarioEncontrado.id,
       isAdmin: usuarioEncontrado.isAdmin,
@@ -149,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
     storage.setItem('userEmail', usuarioEncontrado.email);
     storage.setItem('isAdmin', usuarioEncontrado.isAdmin);
 
-    // Redireciona para a página principal
     window.location.href = '/Main/others/Home/home.html';
   });
 });

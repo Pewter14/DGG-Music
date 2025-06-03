@@ -101,13 +101,40 @@
           <option selected>Alta</option>
         </select>
       </section>
-       </section>
-      <a href="/Main/others/Lista/lista.html" class="enter-button">
-  <i class="fa fa-sign-in-alt"></i> Entrar na Lista de Usuários
-</a>
- </section>
+
+      <section>
+        <a href="/Main/others/Lista/lista.html"
+           id="enter-button"
+           class="enter-button">
+          <i class="fa fa-sign-in-alt"></i>
+          Entrar na Lista de Usuários
+        </a>
+      </section>
     </main>
   </div>
-  
+
+
+  <!--Não vou criar um arquivo só pra isso n mrm.-->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let sess = sessionStorage.getItem('dgg_session')
+              || localStorage.getItem('dgg_session');
+      const btn = document.getElementById('enter-button');
+      if (!btn) return;
+
+      if (!sess) {
+        btn.style.display = 'none';
+        return;
+      }
+      try {
+        const { isAdmin } = JSON.parse(sess);
+        if (!isAdmin) {
+          btn.style.display = 'none';
+        }
+      } catch {
+        btn.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
