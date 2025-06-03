@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Pega sessão (tenta localStorage primeiro, depois sessionStorage)
-  let sessionData = localStorage.getItem('dgg_session') || sessionStorage.getItem('dgg_session');
+  let sessionData = sessionStorage.getItem('dgg_session');
   if (!sessionData) {
     alert('Usuário não logado.');
     window.location.href = '/Main/others/Login/Login.html';
@@ -139,6 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
     showEditForm();
   });
   window.saveChanges = salvarUsuarios;
+
+
+  //btn pra barra de pesquisar pra voltar pra home
+  const botaoPesquisa  = document.getElementById('query');
+  botaoPesquisa.addEventListener('click', () => {
+    window.location.href = '/Main/others/Home/home.html';
+  });
 
   togglePasswordBtn.addEventListener('click', () => {
     if (passwordInput.type === 'password') {
