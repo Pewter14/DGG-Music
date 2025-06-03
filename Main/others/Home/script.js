@@ -6,7 +6,7 @@
   const player  = document.getElementById('player');
 
   btn.addEventListener('click', async (e) => {
-    e.preventDefault(); // evita recarregar a página
+    e.preventDefault();
     const q = input.value.trim();
     if (!q) return alert('Digite algo para buscar');
     results.innerHTML = '<li style="color:white;">Carregando…</li>';

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cpfSpan    = document.getElementById('cpf-usuario');
   const telSpan    = document.getElementById('telefone-usuario');
   const profileName = document.getElementById('profile-name');
-  const profilePic  = document.getElementById('profile-pic'); // espere um <img id="profile-pic">
+  const profilePic  = document.getElementById('profile-pic');
 
   const viewInfo   = document.getElementById('view-info');
   const editForm   = document.querySelector('.edit-form');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Pega array de usuários
   const users = JSON.parse(localStorage.getItem('dgg_users') || '[]');
 
-  // Encontra o usuário pelo campo id (não pelo índice)
+  // Encontra o usuário pelo campo id
   let userIndex = users.findIndex(u => u.id === id);
   let user = users[userIndex];
 
@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (passwordInput.value.trim() !== '') {
         user.senha = passwordInput.value.trim();
       }
-      // foto já está em user.foto se alterada
 
       users[userIndex] = user;
       localStorage.setItem('dgg_users', JSON.stringify(users));
@@ -151,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Inicializa
   preencherDados();
   showViewInfo();
 });

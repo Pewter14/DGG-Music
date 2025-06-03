@@ -82,7 +82,7 @@ function fecharModal() {
   editModal.style.display = 'none';
 }
 
-// Processa submissão do formulário de edição
+// Processa o formulário de edição
 editForm.addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -99,7 +99,7 @@ editForm.addEventListener('submit', function(e) {
     return;
   }
 
-  // Atualiza dados no array
+  // Atualiza dados
   users[index].nome     = nome;
   users[index].email    = email;
   users[index].telefone = tel;
@@ -110,7 +110,7 @@ editForm.addEventListener('submit', function(e) {
   filtrarUsuarios();
 });
 
-// Delegação de eventos para editar/excluir
+// Eventos para editar/excluir
 tableBody.addEventListener('click', e => {
   const button = e.target.closest('button');
   if (!button) return;
@@ -123,5 +123,4 @@ tableBody.addEventListener('click', e => {
   }
 });
 
-// Inicialização: rendera a lista completa
 filtrarUsuarios();

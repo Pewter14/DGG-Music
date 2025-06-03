@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Monta um objeto para representar esse usuário, incluindo um ID único
     const novoUsuario = {
-      id: Date.now(),          // ID gerado a partir do timestamp atual
+      id: Date.now(),          
       nome,
       email,
       senha,
@@ -71,14 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
     usuariosSalvos.push(novoUsuario);
     localStorage.setItem('dgg_users', JSON.stringify(usuariosSalvos));
 
-    // Informa sucesso
     registerMsgContainer.textContent = 'Cadastro realizado com sucesso! Agora faça login.';
     registerMsgContainer.style.color = 'limegreen';
 
-    // Reseta campos
     registerForm.reset();
 
-    // Abre a aba de Login após curto delay
+    // Abre a aba de Login
     setTimeout(() => {
       btnLogin.click();
       registerMsgContainer.textContent = '';
@@ -111,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    //plebeus
     if (!usuarioEncontrado) {
       const original = usuariosSalvos.find(u => u.email === email && u.senha === senha);
       if (original) {

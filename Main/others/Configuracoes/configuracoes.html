@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <!-- Barra de busca flutuante -->
+  <!-- Barra de busca -->
   <div class="floating-search">
     <form class="search-bar">
       <input type="text" id="query" placeholder="Buscar músicas, artistas, álbuns..." />
@@ -22,7 +22,7 @@
     <!-- Resultados abaixo da barra -->
     <ul id="results"></ul>
 
-    <!-- Player abaixo da lista -->
+    <!-- Player -->
     <iframe id="player"
             frameborder="0"
             allow="autoplay; encrypted-media"
@@ -34,7 +34,7 @@
     <!-- Menu lateral -->
     <div id="sidebar-placeholder"></div>
 
-  <!-- Barra de busca flutuante -->
+  <!-- Barra de busca -->
   <div class="floating-search">
     <form class="search-bar">
       <input
@@ -114,7 +114,7 @@
   </div>
 
 
-  <!--Não vou criar um arquivo só pra isso n mrm.-->
+  <!-- Botão só pra ADM -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       let sess = sessionStorage.getItem('dgg_session')
