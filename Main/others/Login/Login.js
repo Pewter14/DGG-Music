@@ -126,16 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
       loginMsgContainer.style.color = 'crimson';
       return;
     }
-    const storage = manterLogado ? localStorage : sessionStorage; //??????????????????????
-
-    storage.setItem('dgg_session', JSON.stringify({
+    sessionStorage.setItem('dgg_session', JSON.stringify({
       id: usuarioEncontrado.id,
       isAdmin: usuarioEncontrado.isAdmin,
       email: usuarioEncontrado.email
     }));
-    storage.setItem('username', usuarioEncontrado.nome);
-    storage.setItem('userEmail', usuarioEncontrado.email);
-    storage.setItem('isAdmin', usuarioEncontrado.isAdmin);
+    sessionStorage.setItem('username', usuarioEncontrado.nome);
+    sessionStorage.setItem('userEmail', usuarioEncontrado.email);
+    sessionStorage.setItem('isAdmin', usuarioEncontrado.isAdmin);
 
     window.location.href = '/Main/others/Home/home.html';
   });

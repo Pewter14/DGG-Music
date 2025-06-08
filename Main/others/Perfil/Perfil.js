@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       users[userIndex] = user;
+      //salvando no server
       localStorage.setItem('dgg_users', JSON.stringify(users));
 
       // Atualiza sessão
@@ -124,9 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       session.email    = user.email;
       session.cpf      = user.cpf;
       session.telefone = user.telefone;
-      localStorage.setItem('dgg_session', JSON.stringify(session));
       sessionStorage.setItem('dgg_session', JSON.stringify(session));
-      localStorage.setItem('username', user.nome);
       sessionStorage.setItem('username', user.nome);
     }
     preencherDados();
